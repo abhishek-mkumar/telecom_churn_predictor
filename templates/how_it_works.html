@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>How It Works</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='how_it_works.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+            <div class="nav-container">
+                <a href="/" class="logo">Churn Predictor</a>
+                <ul class="nav-links">
+                    <li><a href="/data-overview">Data Overview</a></li>
+                    <li><a href="/how-it-works">How It Works</a></li>
+                </ul>
+            </div>
+    </nav>
+
+    <button id="darkModeToggle">🌙 Dark Mode</button>
+
+    <div class="safe-container">
+        <div class="model-section">
+            <h1 class="model-title">🧠 Machine Learning Model Used</h1>
+            <div class="model-details">
+                <h3><span>Model:</span> Random Forest Classifier</h3>
+                <h3><span>Hyperparameters:</span> random_state = 100, max_depth = 6, min_samples_leaf = 8</h3>
+                <h3><span>Sampling Technique:</span> SMOTEENN</h3>
+            </div>
+        </div>
+
+        <div class="model-section">
+            <h1 class="model-title">🎯 Evaluation Metrics</h1>
+            <div class="model-details-em">
+                <h3><span>Accuracy:</span> 0.9325</h3>
+                <h3><span>Precision:</span> 0.9233</h3>
+                <h3><span>Recall:</span> 0.9516</h3>
+                <h3><span>F1-Score:</span> 0.9373</h3>
+            </div>
+        </div>
+
+        <div class="model-section">
+            <h1 class="model-title">📊 Confusion Matrix</h1>
+            <div class="confusion-matrix-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Actual: Yes</th>
+                            <th>Actual: No</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Predicted: Yes</th>
+                            <td>502</td> <!-- True Positive -->
+                            <td>49</td>  <!-- False Positive -->
+                        </tr>
+                        <tr>
+                            <th>Predicted: No</th>
+                            <td>30</td>   <!-- False Negative -->
+                            <td>590</td>   <!-- True Negative -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+            <div class="footer-container">
+                <p>© 2025 Abhishek Manojkumar |
+                    <a href="https://github.com/abhishek-mkumar" target="_blank">GitHub</a> |
+                    <a href="https://linkedin.com/in/abhishek-mkumar" target="_blank">LinkedIn</a> |
+                    <a href="https://www.kaggle.com/abhishekmanojkumar" target="_blank">Kaggle</a> |
+                    <a href="mailto:abhishekmkumar2003@gmail.com">Email</a>
+                </p>
+            </div>
+    </footer>
+
+</body>
+
+<script>
+    const toggle = document.getElementById("darkModeToggle");
+
+    // Apply dark mode if saved in localStorage
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+        if (toggle) toggle.textContent = "☀️ Light Mode";
+    }
+
+    // Toggle dark mode on click
+    if (toggle) {
+        toggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+            const isDark = document.body.classList.contains("dark-mode");
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+            toggle.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+        });
+    }
+</script>
+
+</html>

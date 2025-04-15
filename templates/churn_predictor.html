@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Churn Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='churn_predictor.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">Churn Predictor</a>
+            <ul class="nav-links">
+                <li><a href="/data-overview">Data Overview</a></li>
+                <li><a href="/how-it-works">How It Works</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <button id="darkModeToggle">🌙 Dark Mode</button>
+
+    <form id="churnForm">
+        <label>Tenure</label><br>
+        <input type="number" name="Tenure" required><br><br>
+
+        <label>Monthly Charges</label><br>
+        <input type="number" name="Monthly Charges" required><br><br>
+
+        <label>Total Charges</label><br>
+        <input type="number" name="Total Charges" required><br><br>
+
+        <label class="field-label">Gender of your customer</label><br>
+        <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="Gender" value="1" required> Male</label>
+            <label class="radio-option"><input type="radio" name="Gender" value="0"> Female</label>
+        </div>
+
+        <label class="field-label">Is the customer a senior citizen?</label><br>
+        <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="Senior Citizen" value="1" required> Yes</label>
+            <label class="radio-option"><input type="radio" name="Senior Citizen" value="0"> No</label>
+        </div>
+
+        <label class="field-label">Does the customer have any partner?</label><br>
+        <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="Partner" value="1" required> Yes</label>
+            <label class="radio-option"><input type="radio" name="Partner" value="0"> No</label>
+        </div>
+
+        <label class="field-label">Does the customer have any phone service?</label><br>
+        <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="Phone Service" value="1" required> Yes</label>
+            <label class="radio-option"><input type="radio" name="Phone Service" value="0"> No</label>
+        </div>
+
+        <label class="field-label">Does the customer have multiple lines?</label><br>
+        <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="Multiple Lines" value="1" required> Yes</label>
+            <label class="radio-option"><input type="radio" name="Multiple Lines" value="0"> No</label>
+        </div>
+
+        <label class="field-label">Does the customer have internet service?</label><br>
+        <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="Internet Service" value="1" required> Yes</label>
+            <label class="radio-option"><input type="radio" name="Internet Service" value="0"> No</label>
+        </div>
+
+        <label class="field-label">Does the customer use fiber optic?</label><br>
+        <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="Fiber Optic" value="1" required> Yes</label>
+            <label class="radio-option"><input type="radio" name="Fiber Optic" value="0"> No</label>
+        </div>
+
+        <label class="field-label">Does the customer have online security?</label><br>
+        <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="Online Security" value="1" required> Yes</label>
+            <label class="radio-option"><input type="radio" name="Online Security" value="0"> No</label>
+        </div>
+
+        <label class="field-label">Does the customer have online backup?</label><br>
+        <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="online backup" value="1" required> Yes</label>
+            <label class="radio-option"><input type="radio" name="online backup" value="0"> No</label>
+        </div>
+
+        <label class="field-label">Does the customer have device protection?</label><br>
+        <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="Device Protection" value="1" required> Yes</label>
+            <label class="radio-option"><input type="radio" name="Device Protection" value="0"> No</label>
+        </div>
+
+        <label class="field-label">Does the customer have tech support?</label><br>
+        <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="Tech Support" value="1" required> Yes</label>
+            <label class="radio-option"><input type="radio" name="Tech Support" value="0"> No</label>
+        </div>
+
+        <label class="field-label">Does the customer have TV streaming?</label><br>
+        <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="TV Streaming" value="1" required> Yes</label>
+            <label class="radio-option"><input type="radio" name="TV Streaming" value="0"> No</label>
+        </div>
+
+        <label class="field-label">Does the customer have movie streaming?</label><br>
+        <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="Movie Streaming" value="1" required> Yes</label>
+            <label class="radio-option"><input type="radio" name="Movie Streaming" value="0"> No</label>
+        </div>
+
+        <label class="field-label">Your customer's contract type</label><br>
+        <div class="radio-group">
+            <label class="radio-option-multiple"><input type="radio" name="Contract" value="one_year" required> One Year Contract</label>
+            <label class="radio-option-multiple"><input type="radio" name="Contract" value="two_year"> Two Year Contract</label>
+            <label class="radio-option-multiple"><input type="radio" name="Contract" value="month-month"> Month-Month Contract</label>
+        </div>
+
+        <label class="field-label">Does the customer do paperless billing?</label><br>
+        <div class="radio-group">
+            <label class="radio-option"><input type="radio" name="Paperless Billing" value="1" required> Yes</label>
+            <label class="radio-option"><input type="radio" name="Paperless Billing" value="0"> No</label>
+        </div>
+
+        <label class="field-label">Your customer's payment method</label><br>
+        <div class="radio-group">
+            <label class="radio-option-multiple"><input type="radio" name="Payment Method" value="credit_card" required> Credit Card</label>
+            <label class="radio-option-multiple"><input type="radio" name="Payment Method" value="electronic_check"> Electronic Check</label>
+            <label class="radio-option-multiple"><input type="radio" name="Payment Method" value="mailed_check"> Mailed Check</label>
+            <label class="radio-option-multiple"><input type="radio" name="Payment Method" value="bank_transfer"> Bank Transfer</label>
+        </div>
+
+        <input type="submit" value="Predict">
+        <button type="button" onclick="selectRandomOptions()" title="Click to auto-fill random values">🎲</button>
+
+        <div id="result">
+            {% if result %}
+                <div class="result">
+                    <p>{{result}}</p>
+                </div>
+            {% endif %}
+        </div>
+    </form>
+
+    <script>
+        document.getElementById("churnForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent page reload
+
+            const form = event.target;
+            const formData = new FormData(form);
+
+            fetch("/", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(html => {
+                // Parse returned HTML to extract the result message
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, "text/html");
+                const resultText = doc.querySelector("p")?.innerText || "No result returned";
+                document.getElementById("result").innerHTML = `<div class="result"><p>${resultText}</p></div>`;
+            })
+            .catch(error => {
+                console.error("Prediction failed:", error);
+                document.getElementById("result").innerHTML = "<p style='color:red;'>Prediction failed. Please try again.</p>";
+            });
+        });
+
+        function selectRandomOptions() {
+            const radioGroups = new Set();
+
+            document.querySelectorAll('input[type="number"]').forEach(input => {
+                const min = input.min ? parseFloat(input.min) : 0;
+                const max = input.max ? parseFloat(input.max) : 100;
+                const randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
+                input.value = randomValue;
+            });
+
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radioGroups.add(radio.name); // Collect group names
+            });
+
+            radioGroups.forEach(groupName => {
+                const options = document.querySelectorAll(`input[name="${groupName}"]`);
+                const random = Math.floor(Math.random() * options.length);
+                options[random].checked = true;
+            });
+        }
+    </script>
+
+<footer class="footer">
+    <div class="footer-container">
+        <p>© 2025 Abhishek Manojkumar |
+            <a href="https://github.com/abhishek-mkumar" target="_blank">GitHub</a> |
+            <a href="https://linkedin.com/in/abhishek-mkumar" target="_blank">LinkedIn</a> |
+            <a href="https://www.kaggle.com/abhishekmanojkumar" target="_blank">Kaggle</a> |
+            <a href="mailto:abhishekmkumar2003@gmail.com">Email</a>
+        </p>
+    </div>
+</footer>
+
+</body>
+
+<script>
+    const toggle = document.getElementById("darkModeToggle");
+
+    // Apply dark mode if saved in localStorage
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+        if (toggle) toggle.textContent = "☀️ Light Mode";
+    }
+
+    // Toggle dark mode on click
+    if (toggle) {
+        toggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+            const isDark = document.body.classList.contains("dark-mode");
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+            toggle.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+        });
+    }
+</script>
+
+</html>
+

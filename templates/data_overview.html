@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Overview</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='data_overview.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">Churn Predictor</a>
+            <ul class="nav-links">
+                <li><a href="/data-overview">Data Overview</a></li>
+                <li><a href="/how-it-works">How It Works</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <button id="darkModeToggle">🌙 Dark Mode</button>
+
+    <h1 class="chart">Pie Chart</h1>
+    <img id="modeImage1" src="\static\images\white_pie_chart.png" alt="Responsive Image" style="max-width: 100%; height: auto;">
+
+    <h1 class="chart">Bar Graph</h1>
+    <img id="modeImage2" src="\static\images\white_bar_graph.png" alt="Responsive Image" style="max-width: 100%; height: auto;">
+
+    <h1 class="chart">Box Plot</h1>
+    <img id="modeImage3" src="\static\images\white_box_plot.png" alt="Responsive Image" style="max-width: 100%; height: auto;">
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>© 2025 Abhishek Manojkumar |
+                <a href="https://github.com/abhishek-mkumar" target="_blank">GitHub</a> |
+                <a href="https://linkedin.com/in/abhishek-mkumar" target="_blank">LinkedIn</a> |
+                <a href="https://www.kaggle.com/abhishekmanojkumar" target="_blank">Kaggle</a> |
+                <a href="mailto:abhishekmkumar2003@gmail.com">Email</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+
+<script>
+    const toggle = document.getElementById("darkModeToggle");
+    const modeImage1 = document.getElementById("modeImage1");
+    const modeImage2 = document.getElementById("modeImage2");
+    const modeImage3 = document.getElementById("modeImage3");
+
+    // Apply dark mode if saved in localStorage
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+        if (toggle) toggle.textContent = "☀️ Light Mode";
+
+        // Update images on page load
+        if (modeImage1) modeImage1.src = "/static/images/black_pie_chart.png";
+        if (modeImage2) modeImage2.src = "/static/images/black_bar_graph.png";
+        if (modeImage3) modeImage3.src = "/static/images/black_box_plot.png";
+    }
+
+    if (toggle) {
+        toggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+
+            const isDark = document.body.classList.contains("dark-mode");
+
+            // Save preference to localStorage
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+
+            // Update button text
+            toggle.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+
+            // Update image source based on mode
+            if (modeImage1) modeImage1.src = isDark
+                ? "/static/images/black_pie_chart.png"
+                : "/static/images/white_pie_chart.png";
+
+            if (modeImage2) modeImage2.src = isDark
+                ? "/static/images/black_bar_graph.png"
+                : "/static/images/white_bar_graph.png";
+
+            if (modeImage3) modeImage3.src = isDark
+                ? "/static/images/black_box_plot.png"
+                : "/static/images/white_box_plot.png";
+        });
+    }
+</script>
+
+</html>
